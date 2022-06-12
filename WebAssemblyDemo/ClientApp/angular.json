@@ -129,5 +129,7 @@
       }
     }
   },
-  "defaultProject": "WebAssemblyDemo"
+  "cli": {
+    "analytics": false
+  }
 }
