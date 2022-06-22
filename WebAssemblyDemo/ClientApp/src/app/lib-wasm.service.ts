@@ -19,7 +19,7 @@ export class LibWasmService {
     this.wasmReady.next(true);
   }
 
-  public validateModel(model: SharedLibrary.WeatherForecast): Observable<any>{
+  public validateModel(model: SharedLibrary.User): Observable<any>{
     return this.wasmReady.pipe(filter((value) => value === true)).pipe(
       map(() => {
         return dotnet.WASMLib.Validate(model);

@@ -30,6 +30,6 @@
     </Target>   
 
     <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
-        <Copy SourceFiles="@(PublishFiles)" DestinationFolder="../WebAssemblyDemo/ClientApp/src/assets/lib-wasm" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="@(PublishFiles)" DestinationFolder="../WebAssemblyDemo/ClientApp/src/assets/lib-wasm" />
     </Target>
 </Project>

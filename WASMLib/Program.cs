@@ -26,7 +26,7 @@ public partial class Program
 
 
     [JSInvokable] // The method is invoked from JavaScript.
-    public static List<ValidationResult> Validate(WeatherForecast forecast)
+    public static List<ValidationResult> Validate(User forecast)
     {
         var context = new ValidationContext(forecast, serviceProvider: null, items: null);
         var validationResults = new List<ValidationResult>();
