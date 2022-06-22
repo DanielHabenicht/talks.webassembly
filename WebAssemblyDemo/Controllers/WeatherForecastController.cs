@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using SharedLibrary;
 
 namespace WebAssemblyDemo.Controllers;
 
@@ -28,5 +30,16 @@ public class WeatherForecastController : ControllerBase
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
         .ToArray();
+    }
+
+    [HttpPost]
+    public List<ValidationResult> Post([FromBody] WeatherForecast weatherForecast)
+    {
+        var context = new ValidationContext(weatherForecast, serviceProvider: null, items: null);
+        var validationResults = new List<ValidationResult>();
+
+
+        bool isValid = Validator.TryValidateObject(weatherForecast, context, validationResults);
+        return validationResults;
     }
 }
