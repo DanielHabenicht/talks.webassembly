@@ -4,10 +4,10 @@
     <div *ngFor="let formField of formFields" class="form-group">
         <label> {{ formField.fieldName }}</label>
         <input class="form-control" [type]="formField.fieldType" [formControlName]="formField.fieldName" />
-        <div *ngIf="form.get(formField.fieldName)?.invalid">{{ getErrorForFormField(formField.fieldName)}}</div>
+        <div class="error" *ngIf="form.get(formField.fieldName)?.invalid">{{ getErrorForFormField(formField.fieldName)}}</div>
         <br>
     </div>
-    <div *ngIf="form.invalid">{{ form.errors?.error }}</div>
+    <div class="error" *ngIf="form.invalid">{{ form.errors?.error }}</div>
     <button type="submit" class="btn btn-primary" [disabled]="this.form.invalid">Submit</button>
 </form>
 

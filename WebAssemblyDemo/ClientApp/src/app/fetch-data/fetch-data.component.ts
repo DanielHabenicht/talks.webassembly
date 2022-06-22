@@ -6,7 +6,8 @@ import { SharedLibrary } from 'src/assets/lib-wasm/dotnet';
 
 @Component({
   selector: 'app-fetch-data',
-  templateUrl: './fetch-data.component.html'
+  templateUrl: './fetch-data.component.html',
+  styleUrls: ['fetch-data.component.css']
 })
 export class FetchDataComponent {
   public forecasts: SharedLibrary.WeatherForecast[] = [];
@@ -62,20 +63,21 @@ export class FetchDataComponent {
 
     var startTime = performance.now()
     var newModelState = {...this.form.value,
-        "TemperatureC": parseInt(this.form.value.TemperatureC),
-    "TemperatureF": parseInt(this.form.value.TemperatureF),
+      "TemperatureC": parseInt(this.form.value.TemperatureC),
+      "TemperatureF": parseInt(this.form.value.TemperatureF),
     }
-    var validationResult = this.wasmService.validateModel(newModelState)
-    var stopTime = performance.now()
-    this.performance.wasm = stopTime - startTime;
-    console.log(validationResult)
-    for(let result of validationResult){
-        if(result.memberNames.length > 0){
-            this.form.controls[result.memberNames[0]].setErrors({'incorrect': true,'error': result.errorMessage})
-        }else {
-            this.form.setErrors({'error': result.errorMessage})
-        }
-    }
+    this.wasmService.validateModel(newModelState).subscribe(validationResult => {
+      var stopTime = performance.now()
+      this.performance.wasm = stopTime - startTime;
+      console.log(validationResult)
+      for(let result of validationResult){
+          if(result.memberNames.length > 0){
+              this.form.controls[result.memberNames[0]].setErrors({'incorrect': true,'error': result.errorMessage})
+          }else {
+              this.form.setErrors({'error': result.errorMessage})
+          }
+      }
+    })
   }
 
 
