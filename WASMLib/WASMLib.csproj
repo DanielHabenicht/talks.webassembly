@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="DotNetJS" Version="0.9.1" GeneratePathProperty="true"/>
+        <PackageReference Include="DotNetJS" Version="0.13.2" GeneratePathProperty="true"/>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="../SharedLibrary/SharedLibrary.csproj"/>
@@ -22,8 +22,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PublishFiles Include="bin/**/*.*"/>
+        <PublishFiles Include="bin/*.*"/>
     </ItemGroup>
+
+    <Target Name="CleanBin" AfterTargets="PrePublish">
+        <RemoveDir Directories="bin"/>
+    </Target>   
 
     <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
         <Copy SourceFiles="@(PublishFiles)" DestinationFolder="../WebAssemblyDemo/ClientApp/src/assets/lib-wasm" SkipUnchangedFiles="true" />

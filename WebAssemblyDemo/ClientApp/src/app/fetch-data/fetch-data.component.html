@@ -1,24 +1,15 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<h1>Form Demo</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" (change)="validate()">
+    <div *ngFor="let formField of formFields" class="form-group">
+        <label> {{ formField.fieldName }}</label>
+        <input class="form-control" [type]="formField.fieldType" [formControlName]="formField.fieldName" />
+        <div *ngIf="form.get(formField.fieldName)?.invalid">{{ getErrorForFormField(formField.fieldName)}}</div>
+        <br>
+    </div>
+    <div *ngIf="form.invalid">{{ form.errors?.error }}</div>
+    <button type="submit" class="btn btn-primary" [disabled]="this.form.invalid">Submit</button>
+</form>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
-    </tr>
-  </tbody>
-</table>
+{{ performance | json}}

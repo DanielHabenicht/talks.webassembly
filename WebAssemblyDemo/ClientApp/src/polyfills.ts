@@ -63,3 +63,19 @@ import 'zone.js';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+ var getGlobal: any = function () {
+  if (typeof self !== "undefined") {
+      return self;
+  }
+  if (typeof window !== "undefined") {
+      return window;
+  }
+  /** @ts-ignore */
+  if (typeof global !== "undefined") {
+  /** @ts-ignore */
+      return global;
+  }
+  throw new Error("unable to locate global object");
+};
+(window as any).global = getGlobal();
