@@ -232,3 +232,6 @@ _Pvt_Extensions
 
 # Angular
 .angular
+
+# Generated WASM Code
+**/assets/lib-wasm
