@@ -1,0 +1,39 @@
+<h1>Form Demo</h1>
+Use API: <input type="checkbox" [(ngModel)]="useAPI">
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngFor="let formField of formFields" class="form-group">
+      <ng-container *ngIf="formField.fieldType != 'array'">
+        <label> {{ formField.fieldName }}:</label>
+        <input class="form-control" [type]="formField.fieldType" [formControlName]="formField.fieldName" />
+        <div class="error" *ngIf="form.get(formField.fieldName)?.invalid">{{ getErrorForFormField(formField.fieldName)}}</div>
+        <br>
+      </ng-container>
+      <ng-container *ngIf="formField.fieldType == 'array'">
+        <ng-container formArrayName="backpack">
+          <label> {{ formField.fieldName }}:</label>
+          <br>
+          <div *ngFor="let backpackItemForm of backpackItemControls; let i = index">
+            <div [formGroup]="backpackItemForm">
+              <input [formControlName]="'name'" id="{{'name'+i}}" type="text" class="form-control mb-4" placeholder="Enter Name" />
+              <input [formControlName]="'size'" id="{{'size' + i}}" type="number" class="form-control mb-4"
+              placeholder="Enter Size " />
+            </div>
+          </div>
+          <button (click)="addBackpackItem()">Add Item</button>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="error" *ngIf="form.invalid">{{ form.errors?.error }}</div>
+    <button type="submit" class="btn btn-primary" [disabled]="this.form.invalid">Submit</button>
+</form>
+
+
+Validation: <br>
+API: {{performance.api}}ms <br>
+WASM: {{performance.wasm}}ms
+
+<!-- {{ performance | json}} -->
+
+<!-- {{ form.value | json }} -->

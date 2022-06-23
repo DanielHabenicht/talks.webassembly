@@ -10,6 +10,9 @@ public class Items : IValidatableObject
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
-        throw new NotImplementedException();
+        if (false){
+            yield return new ValidationResult(
+                $"All items in the Backpack need to be unique .");
+        }
     }
 }

@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { FetchDataComponent } from './code-sharing/code-sharing.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'image-upload', component: ImageUploadComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'code-sharing', component: FetchDataComponent },
     ]),
   ],
   providers: [],

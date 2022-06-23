@@ -30,8 +30,8 @@ public class User : IValidatableObject
             yield return new ValidationResult(
                 $"No more than 5 items are allowed.");
         }
-        var hs = new HashSet<Items>();
-        if(Backpack.All(hs.Add)){
+        var hs = new HashSet<string>();
+        if(!Backpack.All(x => hs.Add(x.Name))){
             yield return new ValidationResult(
                 $"All items in the Backpack need to be unique .");
         }
