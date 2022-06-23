@@ -86,11 +86,17 @@ export class FetchDataComponent {
     var newModelState = {...this.form.value,
       "birthdate": new Date(this.form.value.birthdate),
       "firstJobDate": new Date(this.form.value.firstJobDate),
+      backpack: this.form.value.backpack.map((item: any) => {
+        return {
+          name: item.name,
+          size: item.size ?? 0
+        }
+      })
     }
     this.wasmService.validateModel(newModelState).subscribe(validationResult => {
       var stopTime = performance.now()
       this.performance.wasm = stopTime - startTime;
-      console.log(validationResult)
+      // console.log(validationResult)
       if(!this.useAPI){
         this.applyValidationResult(validationResult)
       }
