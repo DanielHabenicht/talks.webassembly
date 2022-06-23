@@ -31,6 +31,7 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "wasm-imagemagick": "^1.2.8",
+    "wasm-pdf": "^0.1.11",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

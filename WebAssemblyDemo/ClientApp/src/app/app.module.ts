@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './code-sharing/code-sharing.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { PdfGeneratorComponent } from './pdf-generator/pdf-generator.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
     HomeComponent,
     FetchDataComponent,
     ImageUploadComponent,
+    PdfGeneratorComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
