@@ -10,3 +10,7 @@
 
 
 # Code Sh
+
+
+- Debugging? 
+- Edge Case, CLoudflare 
